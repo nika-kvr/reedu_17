@@ -1,28 +1,34 @@
 const { getAllExpenses, getExpenseById, postExpense, deleteById, editById } = require('./utils')
 
 const getAllExpensesSrvc = async(req,res)=>{
-  let {page=1, take=5} = req.query
-  page = Number(page)
-  take = Number(take)
-  
-  if(take > 10 || take < 1) take = 5
 
-  const data =  await getAllExpenses(page,take)
-  res.status(200).json(data)
+  const data =  await getAllExpenses()
+  res.render('pages/home.ejs', {data})
 }
 
 const getExpenseByIdSrvc = async(req,res)=>{
   const {id} = req.params
   const data =  await getExpenseById(id)
   if(!data){
-    return res.status(404).json({message: 'expense not found'})
+    return res.render('pages/about.ejs', {data})
   }
 
-  res.json({data: data})
+  res.render('pages/about.ejs', {data})
+}
+
+const addExpenseSrvc = (req,res)=>{
+  res.render('pages/add.ejs')
+}
+
+const editExpenseSrvc = async(req,res)=>{
+  const {id} = req.params
+  const data =  await getExpenseById(id)
+  res.render('pages/edit.ejs', {data})
 }
 
 const postExpenseSrvc = async(req,res)=>{
   const {category, price} = req.body
+
   if(!category || !price){
     return res.status(400).json({message: 'category and price is required'})
   }
@@ -55,10 +61,14 @@ const editByIdSrvc = async(req,res)=>{
 
 }
 
+
+
 module.exports = {
   getAllExpensesSrvc,
   getExpenseByIdSrvc,
   postExpenseSrvc,
   deleteByIdSrvc,
-  editByIdSrvc
+  editByIdSrvc,
+  addExpenseSrvc,
+  editExpenseSrvc
 }

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/css/index.css">
+  <title>Document</title>
+</head>
+<body>
+  <div class="title">
+    <h1>Expenses</h1>
+    <a href="/expenses/add" class="btn btn-primary">Add Expense</a>
+  </div>
+  <div class="card-main">
+    <% if(data.length > 0){ %>
+      <% data.forEach(expense => { %>
+        <div class="card" style="width: 12rem;">
+          <div class="card-body">
+            <h5 class="card-title"><%= expense.category %></h5>
+            <p><a class="link-opacity-100" href="expenses/<%= expense.id %>">About</a></p>
+            <button onclick="deleteById(this)" id="<%= expense.id %>" type="submit" class="btn btn-danger">Delete</button>
+            <a href="expenses/edit/<%= expense.id %>" class="btn btn-primary">Edit</a>
+          </div>
+        </div>
+        <% }) %> 
+      <% } %>
+  </div>
+
+  <script src="javascript/home.js"></script>
+</body>
+</html>

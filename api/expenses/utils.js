@@ -68,7 +68,8 @@ const editById = async(id, category, price)=>{
   data[index] = {
     id: Number(id),
     category: category? category : data[index].category,
-    price: price? price: data[index].price
+    price: price? price: data[index].price,
+    date: data[index].date
   }
 
   await fs.writeFile('expenses.json', JSON.stringify(data))
