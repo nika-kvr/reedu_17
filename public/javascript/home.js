@@ -1,4 +1,3 @@
-
 const deleteById = async(e)=>{
 
   const id = e.id
@@ -16,3 +15,4 @@ const deleteById = async(e)=>{
   }
   
 }
+

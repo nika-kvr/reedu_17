@@ -1,10 +1,11 @@
 body{
-  width: 100vw;
+  /* width: 100vw; */
   height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  margin: auto;
 }
 
 .card-main{
@@ -12,7 +13,7 @@ body{
   gap: 20px;
   margin-top: 30px;
   flex-wrap: wrap;
-  width: 828px;
+  width: 1040px;
 }
 
 
@@ -28,6 +29,7 @@ body{
 }
 
 .title{
+  margin-top: 50px;
   display: flex;
   align-items: center;
   gap: 40px;
